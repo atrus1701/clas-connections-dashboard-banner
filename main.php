@@ -49,18 +49,25 @@ function ccdb_admin_notices()
 
 	$posts = get_posts( array(
 			'post_per_page' => 1,
+			'post_type' => 'connection',
 			'meta_key' => 'username',
 			'meta_value' => $username,
 		)
 	);
 
-	if( emtpy($posts) ) return;
+	if( empty($posts) ) return;
 
-	echo '<div class="updated">
+	?>
+	
+	<div class="updated">
 		<p>
-			<a href="'.get_permalink($posts[0]->ID).'">Connections Post
+			<a href="<?php echo get_edit_post_link($posts[0]->ID, '&'); ?>">
+				Connections Post
+			</a>
 		</p>
-	</div>';
+	</div>
+
+	<?php
 }
 endif;
 
